@@ -21,13 +21,12 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "^22.0.4",
-    "@angular/cli": "^22.0.4",
+    "@angular/build": "^22.0.3",
+    "@angular/cli": "^22.0.3",
     "@angular/compiler-cli": "^22.0.0",
-    "@tailwindcss/postcss": "^4.3.1",
-    "postcss": "^8.5.15",
+    "jsdom": "^26.0.0",
     "prettier": "^3.8.1",
-    "tailwindcss": "^4.3.1",
-    "typescript": "~6.0.2"
+    "typescript": "~6.0.2",
+    "vitest": "^4.0.8"
   }
 }
