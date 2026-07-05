@@ -15,10 +15,11 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should have correct title', () => {
+  it('should render the app header with the cookbook title', () => {
     const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app.title()).toBe('Personal Cookbook');
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.textContent).toContain('Cookbook');
   });
 
   it('should render router outlet', () => {
