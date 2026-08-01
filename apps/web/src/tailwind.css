@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Editorial Warm — terracotta & cream, serif typography, recipe-card vibe */
+    --color-brand-50: #fcf6f4;
+    --color-brand-100: #f8ece8;
+    --color-brand-200: #f2dad2;
+    --color-brand-300: #eac1b4;
+    --color-brand-400: #db9782;
+    --color-brand-500: #cc6b4d;
+    --color-brand-600: #af5c42;
+    --color-brand-700: #8f4b36;
+    --color-brand-800: #763e2d;
+    --color-brand-900: #5c3023;
+    --color-surface-50: #faf3e8;
+    --color-surface-100: #f2ece1;
+    --color-surface-200: #e8e2d8;
+    --color-surface-300: #d7d1c8;
+    --color-surface-400: #b4afa7;
+    --color-surface-500: #918d87;
+    --color-surface-600: #706d68;
+    --color-surface-700: #504e4a;
+    --color-surface-800: #32312e;
+    --color-surface-900: #191817;
+    --color-surface-950: #020617;
+    --color-success: #4d7c4f;
+    --color-warning: #b98a2e;
+    --color-danger: #b34949;
+/* Semantic aliases used by styles.scss */
+    --color-surface-page: #faf3e8;
+    --color-ink: #5c4033;
+    --color-ink-secondary: #72645e;
+    --color-ink-muted: #8b807a;
+    --color-surface: #fff8f0;
+    --color-surface-alt: #f2ece1;
+    --color-edge: #e8e2d8;
+    --color-edge-light: #f2ece1;
+    --color-primary: #cc6b4d;
+    --color-primary-50: var(--color-brand-50);
+    --color-primary-100: var(--color-brand-100);
+    --color-primary-200: var(--color-brand-200);
+    --color-primary-300: var(--color-brand-300);
+    --color-primary-400: var(--color-brand-400);
+    --color-primary-500: var(--color-brand-500);
+    --color-primary-600: var(--color-brand-600);
+    --color-primary-700: var(--color-brand-700);
+    --color-primary-800: var(--color-brand-800);
+    --color-primary-900: var(--color-brand-900);
+    --color-accent: #8b4513;
+    --color-accent-50: #f6ead9;
+    --color-accent-100: #eed9ba;
+    --color-accent-200: #e0bd8e;
+    --color-accent-300: #cd9d5e;
+    --color-accent-400: #b37f3d;
+    --color-accent-500: #8b4513;
+    --color-accent-600: #7a3c10;
+    --color-accent-700: #65310d;
+    --color-accent-800: #4f270b;
+    --color-accent-900: #3d1e09;
+    --color-secondary-50: var(--color-surface-50);
+    --color-secondary-100: var(--color-surface-100);
+    --color-secondary-200: var(--color-surface-200);
+    --color-secondary-300: var(--color-surface-300);
+    --color-secondary-400: var(--color-surface-400);
+    --color-secondary-500: var(--color-surface-500);
+    --color-secondary-600: var(--color-surface-600);
+    --color-secondary-700: var(--color-surface-700);
+    --color-secondary-800: var(--color-surface-800);
+    --color-secondary-900: var(--color-surface-900);
+    --color-secondary-950: var(--color-surface-950);
+    --color-error: #b34949;
+    --color-error-bg: #f9ecec;
+    --color-success: #4d7c4f;
+    --color-success-bg: #eef4ec;
+    --font-heading: 'Georgia', 'Times New Roman', serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --radius-soft: 4px;
+  }
+}
