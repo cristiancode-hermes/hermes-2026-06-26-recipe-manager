@@ -73,8 +73,9 @@ export class MealPlanService {
 
   async generateShoppingList(weekStart: string, weekEnd: string): Promise<any> {
     try {
+      // The real endpoint is GET /api/shopping-list (the old POST /generate does not exist)
       return await firstValueFrom(
-        this.http.post('/api/shopping-lists/generate', { weekStart, weekEnd })
+        this.http.get(`/api/shopping-list?start=${weekStart}&end=${weekEnd}`)
       );
     } catch (err: any) {
       this.error.set(err?.message ?? 'Failed to generate shopping list');

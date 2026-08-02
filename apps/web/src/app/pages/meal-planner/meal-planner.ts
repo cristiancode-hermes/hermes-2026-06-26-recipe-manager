@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe, NgClass } from '@angular/common';
 import { MealPlanService } from '../../services/meal-plan.service';
 import { RecipeService } from '../../services/recipe.service';
+import { ShoppingListService } from '../../services/shopping-list.service';
 import { MealPlanDay, MealSlot, MEAL_SLOTS } from '../../models/meal-plan.model';
 import { Recipe } from '../../models/recipe.model';
 import { LoadingSkeletonComponent } from '../../shared/loading-skeleton/loading-skeleton';
@@ -39,7 +40,40 @@ import { EmptyStateComponent } from '../../shared/empty-state/empty-state';
         <button (click)="generateShoppingList()" class="px-4 py-2 bg-secondary-500 text-white rounded-lg hover:bg-secondary-600 transition-colors text-sm">
           🛒 Generate Shopping List
         </button>
+        @if (shoppingListService.shoppingList()?.items?.length) {
+          <button (click)="exportShoppingList()" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-surface-300 dark:border-surface-600 text-sm font-medium text-surface-700 dark:text-surface-200 hover:border-primary-400 hover:text-primary-700 transition-colors">
+            ⬇️ Export CSV
+          </button>
+        }
       </div>
+
+      <!-- Shopping list panel -->
+      @if (shoppingListService.shoppingList(); as list) {
+        <div class="bg-white dark:bg-surface-800 rounded-xl border border-surface-200 dark:border-surface-700 p-5 mb-6">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="font-semibold text-surface-800 dark:text-surface-100">🛒 Shopping List ({{ list.items.length }} items)</h2>
+            <span class="text-xs text-surface-500">{{ list.items.filter(i => i.acquired).length }}/{{ list.items.length }} acquired</span>
+          </div>
+          @if (list.items.length === 0) {
+            <p class="text-sm text-surface-500">No ingredients needed for this week yet — add meals to the planner first.</p>
+          } @else {
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-1.5">
+              @for (item of list.items; track item.id) {
+                <li class="flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    [checked]="item.acquired"
+                    (change)="shoppingListService.toggleItem(item.id!, $event.target.checked)"
+                    class="rounded border-surface-300 text-secondary-500 focus:ring-secondary-500"
+                  />
+                  <span class="font-medium">{{ item.quantity }} {{ item.unit }}</span>
+                  <span [class]="item.acquired ? 'line-through text-surface-400' : 'text-surface-700 dark:text-surface-200'">{{ item.ingredientName }}</span>
+                </li>
+              }
+            </ul>
+          }
+        </div>
+      }
 
       @if (mealPlanService.loading()) {
         <app-loading-skeleton />
@@ -161,7 +195,8 @@ export class MealPlannerComponent implements OnInit {
 
   constructor(
     protected mealPlanService: MealPlanService,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    protected shoppingListService: ShoppingListService
   ) {}
 
   ngOnInit(): void {
@@ -227,9 +262,23 @@ export class MealPlannerComponent implements OnInit {
   }
 
   async generateShoppingList(): Promise<void> {
-    await this.mealPlanService.generateShoppingList(
-      this.weekStart(),
-      this.weekEnd()
-    );
+    await this.shoppingListService.fetch(this.weekStart(), this.weekEnd());
+  }
+
+  async exportShoppingList(): Promise<void> {
+    try {
+      const blob = await this.shoppingListService.exportCsv(
+        this.weekStart(),
+        this.weekEnd()
+      );
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `shopping-list-${this.weekStart()}-to-${this.weekEnd()}.csv`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    } catch {
+      // ignore download errors silently
+    }
   }
 }

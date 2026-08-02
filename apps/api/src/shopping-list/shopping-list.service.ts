@@ -80,4 +80,26 @@ export class ShoppingListService {
       notes: item.notes.length > 0 ? item.notes.join('; ') : null,
     }));
   }
+
+  async exportCsv(start: string, end: string) {
+    const items = await this.getShoppingList(start, end);
+
+    const escape = (v: unknown): string => {
+      const s = v == null ? '' : String(v);
+      return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+    };
+
+    const header = ['ingredient', 'quantity', 'unit', 'notes'];
+    const rows = items.map((i) => [
+      i.ingredient?.name ?? '',
+      i.quantity,
+      i.unit,
+      i.notes,
+    ]);
+
+    return {
+      filename: `shopping-list-${start}-to-${end}.csv`,
+      csv: [header, ...rows].map((r) => r.map(escape).join(',')).join('\n'),
+    };
+  }
 }
