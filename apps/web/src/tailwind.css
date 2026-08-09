@@ -1,7 +1,17 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
+/* Class-based dark mode: `dark:` utilities apply when .dark is on <html>
+   (toggle in header), NOT when the OS prefers dark. Without this, Tailwind
+   v4 compiles dark: as @media (prefers-color-scheme: dark) and the toggle
+   button does nothing. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Palette as theme tokens: Tailwind v4 only generates utilities (bg-*,
+   text-*, border-*, dark:*, hover:*, /50 opacity) for colors declared in
+   @theme. With the vars in @layer base :root, dark:bg-surface-900 etc. were
+   never generated and dark mode stayed broken. Same values, same :root
+   emission — just the canonical location. */
+@theme {
     /* Editorial Warm — terracotta & cream, serif typography, recipe-card vibe */
     --color-brand-50: #fcf6f4;
     --color-brand-100: #f8ece8;
@@ -77,5 +87,4 @@
     --font-body: 'Inter', system-ui, -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
     --radius-soft: 4px;
-  }
 }

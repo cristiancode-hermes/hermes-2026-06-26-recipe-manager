@@ -91,14 +91,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadRecipes();
-    this.initDarkMode();
-  }
-
-  private initDarkMode(): void {
-    const stored = localStorage.getItem('darkMode');
-    if (stored === 'true') {
-      document.documentElement.classList.add('dark');
-    }
   }
 
   loadRecipes(): void {
