@@ -18,7 +18,7 @@ describe('RecipesService', () => {
     cookTime: 20,
     difficulty: Difficulty.EASY,
     servings: 4,
-    instructions: '["Step 1", "Step 2"]',
+    instructions: ['Step 1', 'Step 2'],
     imageUrl: null,
     createdAt: new Date(),
     updatedAt: new Date(),

@@ -78,7 +78,8 @@ export class RecipesService {
 
     const recipe = this.recipeRepo.create({
       ...recipeData,
-      instructions: JSON.stringify(recipeData.instructions),
+      // instructionsTransformer serializes the array to a JSON string
+      instructions: recipeData.instructions as string[],
     });
     await this.recipeRepo.save(recipe);
 
@@ -104,7 +105,8 @@ export class RecipesService {
     const { ingredients, instructions, ...updateData } = dto;
 
     if (instructions) {
-      (updateData as any).instructions = JSON.stringify(instructions);
+      // instructionsTransformer serializes the array to a JSON string
+      (updateData as any).instructions = instructions;
     }
 
     await this.recipeRepo.update(id, updateData as any);

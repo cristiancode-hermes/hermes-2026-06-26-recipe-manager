@@ -85,7 +85,7 @@ export class SeedService implements OnModuleInit {
       cookTime: 20,
       difficulty: Difficulty.EASY,
       servings: 4,
-      instructions: JSON.stringify([
+      instructions: [
         'Dice chicken breast into bite-sized pieces.',
         'Heat oil in a wok or large pan over high heat.',
         'Add chicken and cook until golden, about 5-7 minutes.',
@@ -93,7 +93,7 @@ export class SeedService implements OnModuleInit {
         'Add sliced bell peppers and cook for 2-3 minutes.',
         'Add soy sauce and stir-fry for another 2 minutes.',
         'Serve over steamed rice. Garnish with cilantro.',
-      ]),
+      ],
     });
 
     await this.recipeIngredientRepo.save(
@@ -116,7 +116,7 @@ export class SeedService implements OnModuleInit {
       cookTime: 25,
       difficulty: Difficulty.MEDIUM,
       servings: 4,
-      instructions: JSON.stringify([
+      instructions: [
         'Bring a large pot of salted water to a boil.',
         'Cook pasta according to package directions until al dente.',
         'While pasta cooks, melt butter in a pan over medium heat.',
@@ -124,7 +124,7 @@ export class SeedService implements OnModuleInit {
         'Add milk, salt, and pepper. Simmer until slightly thickened.',
         'Drain pasta and toss with the creamy garlic sauce.',
         'Serve hot with grated parmesan if desired.',
-      ]),
+      ],
     });
 
     await this.recipeIngredientRepo.save([
@@ -144,7 +144,7 @@ export class SeedService implements OnModuleInit {
       cookTime: 30,
       difficulty: Difficulty.EASY,
       servings: 6,
-      instructions: JSON.stringify([
+      instructions: [
         'Heat oil in a large pot over medium heat.',
         'Sauté diced onion until translucent, about 5 minutes.',
         'Add minced garlic, cumin, and paprika. Cook for 1 minute.',
@@ -152,7 +152,7 @@ export class SeedService implements OnModuleInit {
         'Add rice, salt, and 3 cups of water. Bring to a boil.',
         'Reduce heat, cover, and simmer for 15-20 minutes until rice is tender.',
         'Fluff with a fork and serve.',
-      ]),
+      ],
     });
 
     await this.recipeIngredientRepo.save([
@@ -174,7 +174,7 @@ export class SeedService implements OnModuleInit {
       cookTime: 15,
       difficulty: Difficulty.EASY,
       servings: 4,
-      instructions: JSON.stringify([
+      instructions: [
         'In a large bowl, whisk together flour, sugar, salt, and baking powder.',
         'In another bowl, beat eggs, then add milk and melted butter.',
         'Pour wet ingredients into dry ingredients and stir until just combined.',
@@ -182,7 +182,7 @@ export class SeedService implements OnModuleInit {
         'Pour batter onto the griddle, about 1/4 cup per pancake.',
         'Cook until bubbles form on the surface, then flip and cook until golden.',
         'Serve with maple syrup and fresh fruit.',
-      ]),
+      ],
     });
 
     await this.recipeIngredientRepo.save([
